@@ -1,0 +1,43 @@
+{
+  "name": "monta-vista-ml-club-website",
+  "version": "1.0.0",
+  "description": "Modern website for Monta Vista High School's Machine Learning Club",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "echo 'Deploy to your preferred platform'",
+    "lint": "echo 'Linting HTML, CSS, and JS files'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "machine-learning",
+    "ai",
+    "education",
+    "high-school",
+    "club",
+    "website",
+    "static-site"
+  ],
+  "author": "Monta Vista Machine Learning Club",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/ml-club-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/ml-club-website/issues"
+  },
+  "homepage": "https://your-username.github.io/ml-club-website",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

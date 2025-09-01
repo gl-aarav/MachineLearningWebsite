@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Monta Vista Machine Learning Club</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>ML Club</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="events.html" class="nav-link">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a href="resources.html" class="nav-link">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-small">
+        <div class="container">
+            <h1 class="page-title">Get In Touch</h1>
+            <p class="page-subtitle">Ready to join our community? We'd love to hear from you!</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Send us a Message</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="grade">Grade Level</label>
+                            <select id="grade" name="grade" required>
+                                <option value="">Select your grade</option>
+                                <option value="9">9th Grade</option>
+                                <option value="10">10th Grade</option>
+                                <option value="11">11th Grade</option>
+                                <option value="12">12th Grade</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Area of Interest</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Select your main interest</option>
+                                <option value="general">General Machine Learning</option>
+                                <option value="computer-vision">Computer Vision</option>
+                                <option value="nlp">Natural Language Processing</option>
+                                <option value="reinforcement-learning">Reinforcement Learning</option>
+                                <option value="research">Research Opportunities</option>
+                                <option value="competitions">Competitions</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">ML Experience Level</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="experience" value="beginner" required>
+                                    <span class="radio-custom"></span>
+                                    Beginner (No prior experience)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="experience" value="intermediate" required>
+                                    <span class="radio-custom"></span>
+                                    Intermediate (Some coding/ML knowledge)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="experience" value="advanced" required>
+                                    <span class="radio-custom"></span>
+                                    Advanced (Experienced with ML projects)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your interests, questions, or how you'd like to contribute to the club..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Us</h3>
+                            <p>mvmlclub@gmail.com</p>
+                            <span>We'll respond within 24 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Visit Us</h3>
+                            <p>Monta Vista High School<br>21840 McClellan Rd<br>Cupertino, CA 95014</p>
+                            <span>Room 302 - Computer Science Lab</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Meeting Times</h3>
+                            <p>Every Friday, 3:30 PM - 5:00 PM</p>
+                            <span>Additional workshops on weekends</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Join Our Discord</h3>
+                            <p>Get instant help and connect with members</p>
+                            <a href="#" class="contact-link">Join Server</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need prior programming experience to join?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not at all! We welcome students of all skill levels. We have beginner-friendly workshops and mentorship programs to help you get started. Many of our most successful members started with no programming experience.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What programming languages do you use?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We primarily use Python for machine learning projects, as it has the best ecosystem of ML libraries like PyTorch, TensorFlow, and scikit-learn. We also occasionally use JavaScript for web-based AI applications and R for data analysis.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much time commitment is required?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our weekly meetings are 1.5 hours every Friday. Additional time depends on your involvement level - you might spend 2-5 hours per week on projects, competitions, or self-study. We're flexible and understand academic priorities.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I join mid-semester?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We accept new members throughout the year. We'll help you catch up with current projects and pair you with a mentor to get you started. Just come to one of our Friday meetings or contact us via email.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What kind of projects do members work on?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our projects range from beginner-friendly image classifiers to advanced research collaborations with Stanford. Recent projects include real-time object detection, sentiment analysis bots, game AI, and medical image analysis.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you participate in competitions?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We regularly participate in Kaggle competitions, Google AI challenges, and local hackathons. We've won several regional competitions and provide training and team support for members who want to compete.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Officers Section -->
+    <section class="officers-section">
+        <div class="container">
+            <h2 class="section-title">Club Officers</h2>
+            <div class="officers-grid">
+                <div class="officer-card">
+                    <div class="officer-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Alex Chen">
+                    </div>
+                    <div class="officer-info">
+                        <h3>Alex Chen</h3>
+                        <p class="officer-role">President</p>
+                        <p class="officer-email">alex.chen@student.fuhsd.org</p>
+                        <div class="officer-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="officer-card">
+                    <div class="officer-image">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" alt="Sarah Martinez">
+                    </div>
+                    <div class="officer-info">
+                        <h3>Sarah Martinez</h3>
+                        <p class="officer-role">Vice President</p>
+                        <p class="officer-email">sarah.martinez@student.fuhsd.org</p>
+                        <div class="officer-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="officer-card">
+                    <div class="officer-image">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="David Kim">
+                    </div>
+                    <div class="officer-info">
+                        <h3>David Kim</h3>
+                        <p class="officer-role">Technical Lead</p>
+                        <p class="officer-email">david.kim@student.fuhsd.org</p>
+                        <div class="officer-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="officer-card">
+                    <div class="officer-image">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Emily Wong">
+                    </div>
+                    <div class="officer-info">
+                        <h3>Emily Wong</h3>
+                        <p class="officer-role">Events Coordinator</p>
+                        <p class="officer-email">emily.wong@student.fuhsd.org</p>
+                        <div class="officer-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>ML Club</span>
+                    </div>
+                    <p>Monta Vista High School's premier machine learning and artificial intelligence club.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> mvmlclub@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Monta Vista High School</li>
+                        <li><i class="fas fa-calendar"></i> Meetings: Every Friday 3:30 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Monta Vista Machine Learning Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant" id="aiAssistant">
+        <div class="assistant-toggle" id="assistantToggle">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="assistant-chat" id="assistantChat">
+            <div class="chat-header">
+                <h3>ML Assistant</h3>
+                <button class="close-chat" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        Hi! I'm your ML Club assistant. Ask me about our projects, events, or anything related to machine learning!
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Ask me anything...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
