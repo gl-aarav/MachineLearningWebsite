@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -37,6 +39,9 @@
                     <a href="contact.html" class="nav-link">Contact</a>
                 </li>
             </ul>
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -56,7 +61,7 @@
                 <br>Club at Monta Vista
             </h1>
             <p class="hero-subtitle">
-                Exploring the future of AI through hands-on projects, cutting-edge research, 
+                Exploring the future of AI through hands-on projects, cutting-edge research,
                 and collaborative learning experiences.
             </p>
             <div class="hero-buttons">
@@ -96,7 +101,8 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3>Deep Learning</h3>
-                    <p>Explore neural networks, computer vision, and natural language processing through hands-on projects.</p>
+                    <p>Explore neural networks, computer vision, and natural language processing through hands-on
+                        projects.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -110,7 +116,8 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Community</h3>
-                    <p>Connect with like-minded students passionate about artificial intelligence and machine learning.</p>
+                    <p>Connect with like-minded students passionate about artificial intelligence and machine learning.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -123,62 +130,86 @@
         </div>
     </section>
 
-    <!-- Recent Projects -->
-    <section class="recent-projects">
+    <!-- Discord Server Section -->
+    <section class="discord-section">
         <div class="container">
-            <h2 class="section-title">Recent Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop" alt="Computer Vision Project">
-                        <div class="project-overlay">
-                            <a href="projects.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+            <div class="discord-content">
+                <div class="discord-preview">
+                    <div class="discord-card">
+                        <div class="discord-header">
+                            <div class="discord-server-info">
+                                <div class="discord-server-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="discord-server-details">
+                                    <h3>ML Club Server</h3>
+                                    <div class="discord-server-stats">
+                                        <span class="online-count">
+                                            <span class="status-dot online"></span>
+                                            5 Online
+                                        </span>
+                                        <span class="member-count">
+                                            <span class="status-dot"></span>
+                                            11 Members
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="discord-server-status">
+                                <span class="established">Est. Aug 2025</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Real-time Object Detection</h3>
-                        <p>YOLOv8 implementation for live video analysis</p>
-                        <div class="project-tags">
-                            <span class="tag">Computer Vision</span>
-                            <span class="tag">PyTorch</span>
+                        <div class="discord-description">
+                            <p>Monta Vista machine learning club.</p>
                         </div>
+                        <div class="discord-tags">
+                            <span class="discord-tag">
+                                <i class="fas fa-brain"></i>
+                                ML
+                            </span>
+                            <span class="discord-tag">
+                                <i class="fas fa-laptop"></i>
+                                Machines
+                            </span>
+                            <span class="discord-tag">
+                                <i class="fas fa-code"></i>
+                                Code
+                            </span>
+                            <span class="discord-tag">
+                                <i class="fas fa-robot"></i>
+                                Machine Learning
+                            </span>
+                            <span class="discord-tag">
+                                <i class="fas fa-desktop"></i>
+                                Computers
+                            </span>
+                        </div>
+                        <a href="https://discord.gg/mTvPc9qVVt" target="_blank" class="discord-join-btn">
+                            <i class="fab fa-discord"></i>
+                            Go to Server
+                        </a>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop" alt="NLP Project">
-                        <div class="project-overlay">
-                            <a href="projects.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                <div class="discord-info">
+                    <h2>Join Our Discord Community</h2>
+                    <p>Connect with fellow ML enthusiasts, share projects, get help with coding challenges, and stay
+                        updated on the latest AI developments.</p>
+                    <div class="discord-features">
+                        <div class="discord-feature">
+                            <i class="fas fa-comments"></i>
+                            <span>Real-time discussions</span>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Sentiment Analysis Bot</h3>
-                        <p>BERT-based model for social media analysis</p>
-                        <div class="project-tags">
-                            <span class="tag">NLP</span>
-                            <span class="tag">Transformers</span>
+                        <div class="discord-feature">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Project collaboration</span>
                         </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop" alt="AI Game">
-                        <div class="project-overlay">
-                            <a href="projects.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <div class="discord-feature">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Event notifications</span>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>AI Game Agent</h3>
-                        <p>Reinforcement learning for strategic gameplay</p>
-                        <div class="project-tags">
-                            <span class="tag">RL</span>
-                            <span class="tag">Game AI</span>
+                        <div class="discord-feature">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Q&A support</span>
                         </div>
                     </div>
                 </div>
@@ -191,7 +222,8 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Shape the Future?</h2>
-                <p>Join Monta Vista's premier machine learning community and start building tomorrow's AI solutions today.</p>
+                <p>Join Monta Vista's premier machine learning community and start building tomorrow's AI solutions
+                    today.</p>
                 <a href="contact.html" class="btn btn-primary">Get Started</a>
             </div>
         </div>
@@ -208,19 +240,19 @@
                     </div>
                     <p>Monta Vista High School's premier machine learning and artificial intelligence club.</p>
                     <div class="social-links">
-					    <a href="https://discord.gg/mTvPc9qVVt" target="_blank">
-					        <i class="fab fa-discord"></i>
-					    </a>
-					    <a href="https://github.com/gl-aarav" target="_blank">
-					        <i class="fab fa-github"></i>
-					    </a>
-					    <a href="https://instagram.com/YourClub" target="_blank">
-					        <i class="fab fa-instagram"></i>
-					    </a>
-					    <a href="https://linkedin.com/in/YourClub" target="_blank">
-					        <i class="fab fa-linkedin"></i>
-					    </a>
-					</div>
+                        <a href="https://discord.gg/mTvPc9qVVt" target="_blank">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://github.com/gl-aarav" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://instagram.com/YourClub" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/YourClub" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -246,34 +278,8 @@
         </div>
     </footer>
 
-    <!-- AI Assistant -->
-    <div class="ai-assistant" id="aiAssistant">
-        <div class="assistant-toggle" id="assistantToggle">
-            <i class="fas fa-robot"></i>
-        </div>
-        <div class="assistant-chat" id="assistantChat">
-            <div class="chat-header">
-                <h3>ML Assistant</h3>
-                <button class="close-chat" id="closeChat">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">
-                    <div class="message-content">
-                        Hi! I'm your ML Club assistant. Ask me about our projects, events, or anything related to machine learning!
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="messageInput" placeholder="Ask me anything...">
-                <button id="sendMessage">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>

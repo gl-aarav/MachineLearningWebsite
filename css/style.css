@@ -21,6 +21,60 @@
     --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
     --shadow-primary: 0 10px 40px rgba(99, 102, 241, 0.2);
     --shadow-secondary: 0 5px 20px rgba(0, 0, 0, 0.3);
+    --accent-blue: #3b82f6;
+    --accent-green: #22c55e;
+    --accent-yellow: #eab308;
+}
+
+/* Light theme variables */
+.light-theme {
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary-color: #db2777;
+    --accent-color: #0891b2;
+    --background-dark: #f0f2f5; /* Changed for better contrast */
+    --background-light: #ffffff; /* Changed for better contrast */
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --surface: #ffffff;
+    --surface-light: #f7f9fa;
+    --shadow-primary: 0 10px 40px rgba(79, 70, 229, 0.1);
+    --shadow-secondary: 0 5px 20px rgba(0, 0, 0, 0.1);
+    --accent-blue: #2563eb;
+    --accent-green: #16a34a;
+    --accent-yellow: #d97706;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: var(--surface-light);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 1rem;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    overflow: hidden; /* Add this to contain the rotating icon */
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease; /* Add transition for smooth rotation */
+}
+
+.theme-toggle:hover i {
+    transform: rotate(360deg); /* Rotate the icon */
 }
 
 html {
@@ -47,11 +101,15 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(15, 23, 42, 0.9);
+    background: var(--background-dark);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 1000;
     transition: all 0.3s ease;
+}
+
+.light-theme .navbar {
+    background: var(--background-light);
 }
 
 .nav-container {
@@ -461,6 +519,211 @@ body {
     font-weight: 500;
 }
 
+/* Discord Section */
+.discord-section {
+    padding: 100px 0;
+    background: var(--background-light);
+}
+
+.discord-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.discord-preview {
+    display: flex;
+    justify-content: center;
+}
+
+.discord-card {
+    background: #2c2f33;
+    border-radius: 15px;
+    padding: 1.5rem;
+    max-width: 400px;
+    width: 100%;
+    border: 1px solid #23272a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.discord-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.discord-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.discord-server-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.discord-server-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.discord-server-details h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.discord-server-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.online-count,
+.member-count {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #b9bbbe;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #747f8d;
+}
+
+.status-dot.online {
+    background: #43b581;
+}
+
+.discord-server-status {
+    color: #747f8d;
+    font-size: 0.8rem;
+}
+
+.discord-description {
+    margin-bottom: 1rem;
+}
+
+.discord-description p {
+    color: #b9bbbe;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.discord-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.discord-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #5865f2;
+    color: white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.discord-tag i {
+    font-size: 0.7rem;
+}
+
+.discord-join-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #5865f2;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.discord-join-btn:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+}
+
+.discord-join-btn i {
+    font-size: 1.1rem;
+}
+
+.discord-info h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.discord-info p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.discord-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.discord-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.discord-feature:hover {
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+}
+
+.discord-feature i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    width: 20px;
+}
+
+.discord-feature span {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
 /* CTA Section */
 .cta {
     padding: 100px 0;
@@ -586,161 +849,6 @@ body {
     color: var(--text-muted);
 }
 
-/* AI Assistant */
-.ai-assistant {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.assistant-toggle {
-    width: 60px;
-    height: 60px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: var(--shadow-primary);
-    transition: all 0.3s ease;
-}
-
-.assistant-toggle:hover {
-    transform: scale(1.1);
-}
-
-.assistant-toggle i {
-    font-size: 1.5rem;
-    color: white;
-}
-
-.assistant-chat {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 350px;
-    height: 500px;
-    background: var(--surface);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: var(--shadow-secondary);
-}
-
-.assistant-chat.active {
-    display: flex;
-}
-
-.chat-header {
-    background: var(--gradient-primary);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chat-header h3 {
-    color: white;
-    font-weight: 600;
-}
-
-.close-chat {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    transition: background 0.3s ease;
-}
-
-.close-chat:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.chat-messages {
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.message {
-    max-width: 80%;
-    word-wrap: break-word;
-}
-
-.bot-message {
-    align-self: flex-start;
-}
-
-.user-message {
-    align-self: flex-end;
-}
-
-.message-content {
-    padding: 0.75rem 1rem;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.bot-message .message-content {
-    background: var(--background-light);
-    color: var(--text-primary);
-}
-
-.user-message .message-content {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-.chat-input {
-    padding: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.chat-input input {
-    flex: 1;
-    background: var(--background-light);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-    padding: 0.75rem 1rem;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-}
-
-.chat-input input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
-
-.chat-input button {
-    background: var(--gradient-primary);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: white;
-    transition: transform 0.3s ease;
-}
-
-.chat-input button:hover {
-    transform: scale(1.1);
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -787,10 +895,6 @@ body {
         align-items: center;
     }
 
-    .assistant-chat {
-        width: 300px;
-        height: 400px;
-    }
 
     .projects-grid {
         grid-template-columns: 1fr;
@@ -847,6 +951,17 @@ body {
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
     }
 }
 
@@ -992,6 +1107,9 @@ body {
     position: relative;
     height: 250px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .member-image img {
@@ -999,6 +1117,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    border-radius: 15px;
 }
 
 .team-member:hover .member-image img {
@@ -2478,5 +2597,18 @@ body {
         flex-direction: column;
         gap: 1rem;
         align-items: center;
+    }
+    
+    .discord-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .discord-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .discord-info h2 {
+        font-size: 2rem;
     }
 }
