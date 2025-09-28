@@ -257,11 +257,7 @@ Key responsive features:
 
 ## 🚀 Deployment
 
-### GitHub Pages
-1. Push code to GitHub repository
-2. Go to Settings > Pages
-3. Select source branch (usually `main`)
-4. Site will be available at `https://username.github.io/repository-name`
+
 
 ### Netlify
 1. Connect your GitHub repository
@@ -370,7 +366,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Getting Help
 - 📧 **Email**: mvmlclub@gmail.com
 - 💬 **Discord**: [Join our server](https://discord.com/invite/mTvPc9qVVt)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/your-username/ml-club/issues)
+
 - 📖 **Documentation**: Check this README and code comments
 
 ### Club Information

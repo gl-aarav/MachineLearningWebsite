@@ -180,20 +180,72 @@ class DiscordEmbed {
 
 // Initialize Discord Embed
 document.addEventListener('DOMContentLoaded', () => {
-
     new DiscordEmbed();
+    
+    // Add scroll to top button to the DOM
+    const scrollTopBtn = document.createElement('div');
+    scrollTopBtn.className = 'scroll-top-btn';
+    scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollTopBtn);
+    
+    // Show/hide scroll to top button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Add animations to elements
+    const animateElements = () => {
+        // Add fade-in class to main elements
+        const sections = document.querySelectorAll('section, .hero, .card, .feature-item');
+        sections.forEach((section, index) => {
+            section.classList.add('fade-in');
+            if (index % 3 === 1) section.classList.add('fade-in-delay-1');
+            if (index % 3 === 2) section.classList.add('fade-in-delay-2');
+        });
+        
+        // Add hover animations to buttons
+        const buttons = document.querySelectorAll('.btn, button');
+        buttons.forEach(button => {
+            button.classList.add('btn-animated');
+        });
+        
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.card, .resource-item, .project-card');
+        cards.forEach(card => {
+            card.classList.add('card-animated');
+        });
+    };
+    
+    // Run animations
+    animateElements();
 });
 
-// Navbar scroll effect
+// Navbar scroll effect with theme sync
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     const isLight = document.documentElement.classList.contains('light-theme');
+    
+    // Always use current theme colors
     if (window.scrollY > 50) {
-        navbar.style.background = isLight ? 'var(--background-light)' : 'var(--background-dark)';
-        navbar.style.backdropFilter = 'blur(10px)';
+        navbar.style.background = isLight ? 'rgba(19, 47, 76, 0.9)' : 'rgba(10, 25, 41, 0.9)';
+        navbar.style.backdropFilter = 'blur(15px)';
+        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(10, 132, 255, 0.1)';
     } else {
-        navbar.style.background = isLight ? 'var(--background-light)' : 'var(--background-dark)';
-        navbar.style.backdropFilter = 'blur(10px)';
+        navbar.style.background = isLight ? 'rgba(19, 47, 76, 0.8)' : 'rgba(10, 25, 41, 0.8)';
+        navbar.style.backdropFilter = 'blur(15px)';
+        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 132, 255, 0.05)';
     }
 });
 

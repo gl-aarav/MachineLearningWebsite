@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100" height="100">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a84ff" />
+      <stop offset="100%" stop-color="#00c853" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff3b30" />
+      <stop offset="100%" stop-color="#0a84ff" />
+    </linearGradient>
+  </defs>
+  <!-- Brain outline -->
+  <path d="M256,100 C360,100 400,180 400,256 C400,332 360,412 256,412 C152,412 112,332 112,256 C112,180 152,100 256,100 Z" fill="none" stroke="url(#gradient1)" stroke-width="8"/>
+  
+  <!-- Circuit patterns -->
+  <path d="M256,120 L256,180 M256,180 L200,220 M256,180 L312,220 M200,220 L200,300 M312,220 L312,300 M200,300 L256,340 M312,300 L256,340 M256,340 L256,390" fill="none" stroke="url(#gradient2)" stroke-width="4"/>
+  
+  <!-- Nodes -->
+  <circle cx="256" cy="180" r="15" fill="url(#gradient1)"/>
+  <circle cx="200" cy="220" r="12" fill="url(#gradient2)"/>
+  <circle cx="312" cy="220" r="12" fill="url(#gradient1)"/>
+  <circle cx="200" cy="300" r="12" fill="url(#gradient2)"/>
+  <circle cx="312" cy="300" r="12" fill="url(#gradient1)"/>
+  <circle cx="256" cy="340" r="15" fill="url(#gradient2)"/>
+  
+  <!-- Pulse animations -->
+  <circle cx="256" cy="180" r="8" fill="#ffffff">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="220" r="6" fill="#ffffff">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="312" cy="220" r="6" fill="#ffffff">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="300" r="6" fill="#ffffff">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="312" cy="300" r="6" fill="#ffffff">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="256" cy="340" r="8" fill="#ffffff">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>
