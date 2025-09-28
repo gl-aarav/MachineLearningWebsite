@@ -202,6 +202,7 @@ class DiscordEmbed {
 
 // Initialize Discord Embed
 document.addEventListener('DOMContentLoaded', () => {
+    new MLAssistant();
     new DiscordEmbed();
 });
 
