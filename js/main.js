@@ -90,34 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
 
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        html.classList.add(currentTheme);
-        if (currentTheme === 'light-theme') {
-            if (themeToggle) themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-        } else {
-            if (themeToggle) themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-        }
-    } else {
-        // Default to dark theme if no preference is found
-        html.classList.add('dark-theme');
-        if (themeToggle) themeToggle.querySelector('i').classList.add('fa-moon');
-        localStorage.setItem('theme', 'dark-theme');
-    }
+    // Always default to dark theme
+    html.classList.add('dark-theme');
+    if (themeToggle) themeToggle.querySelector('i').classList.add('fa-moon');
+    localStorage.setItem('theme', 'dark-theme');
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            if (html.classList.contains('light-theme')) {
-                html.classList.replace('light-theme', 'dark-theme');
-                themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'dark-theme');
-            } else {
-                html.classList.replace('dark-theme', 'light-theme');
-                themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'light-theme');
-            }
-        });
-    }
+
 });
 
 
@@ -202,7 +180,7 @@ class DiscordEmbed {
 
 // Initialize Discord Embed
 document.addEventListener('DOMContentLoaded', () => {
-    new MLAssistant();
+
     new DiscordEmbed();
 });
 
@@ -211,9 +189,11 @@ window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     const isLight = document.documentElement.classList.contains('light-theme');
     if (window.scrollY > 50) {
-        navbar.style.background = isLight ? 'rgba(255, 255, 255, 0.95)' : 'rgba(15, 23, 42, 0.95)';
+        navbar.style.background = isLight ? 'var(--background-light)' : 'var(--background-dark)';
+        navbar.style.backdropFilter = 'blur(10px)';
     } else {
-        navbar.style.background = isLight ? 'var(--background-light)' : 'rgba(15, 23, 42, 0.9)';
+        navbar.style.background = isLight ? 'var(--background-light)' : 'var(--background-dark)';
+        navbar.style.backdropFilter = 'blur(10px)';
     }
 });
 

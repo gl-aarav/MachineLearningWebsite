@@ -369,7 +369,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Getting Help
 - 📧 **Email**: mvmlclub@gmail.com
-- 💬 **Discord**: [Join our server](https://discord.gg/your-invite)
+- 💬 **Discord**: [Join our server](https://discord.com/invite/mTvPc9qVVt)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/your-username/ml-club/issues)
 - 📖 **Documentation**: Check this README and code comments
 
