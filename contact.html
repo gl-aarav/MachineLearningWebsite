@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -34,9 +36,23 @@
                     <a href="resources.html" class="nav-link">Resources</a>
                 </li>
                 <li class="nav-item">
-                    <a href="contact.html" class="nav-link active">Contact</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </li>
             </ul>
+            <div class="theme-switcher">
+                <div class="switch-container">
+                    <div class="sun-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <div class="moon-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+            </div>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -65,12 +81,12 @@
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="grade">Grade Level</label>
                             <select id="grade" name="grade" required>
@@ -82,7 +98,7 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="interest">Area of Interest</label>
                             <select id="interest" name="interest" required>
@@ -96,7 +112,7 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="experience">ML Experience Level</label>
                             <div class="radio-group">
@@ -117,23 +133,25 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your interests, questions, or how you'd like to contribute to the club..." required></textarea>
+                            <textarea id="message" name="message" rows="5"
+                                placeholder="Tell us about your interests, questions, or how you'd like to contribute to the club..."
+                                required></textarea>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">
                             <span>Send Message</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
                 </div>
-                
+
                 <!-- Contact Info -->
                 <div class="contact-info theme-styled">
                     <h2>Contact Information</h2>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
@@ -144,7 +162,7 @@
                             <span>We'll respond within 24 hours</span>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
@@ -155,7 +173,7 @@
                             <span>Room 302 - Computer Science Lab</span>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-clock"></i>
@@ -166,7 +184,7 @@
                             <span>Additional workshops on weekends</span>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fab fa-discord"></i>
@@ -193,57 +211,69 @@
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Not at all! We welcome students of all skill levels. We have beginner-friendly workshops and mentorship programs to help you get started. Many of our most successful members started with no programming experience.</p>
+                        <p>Not at all! We welcome students of all skill levels. We have beginner-friendly workshops and
+                            mentorship programs to help you get started. Many of our most successful members started
+                            with no programming experience.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>What programming languages do you use?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>We primarily use Python for machine learning projects, as it has the best ecosystem of ML libraries like PyTorch, TensorFlow, and scikit-learn. We also occasionally use JavaScript for web-based AI applications and R for data analysis.</p>
+                        <p>We primarily use Python for machine learning projects, as it has the best ecosystem of ML
+                            libraries like PyTorch, TensorFlow, and scikit-learn. We also occasionally use JavaScript
+                            for web-based AI applications and R for data analysis.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>How much time commitment is required?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Our weekly meetings are 1.5 hours every Friday. Additional time depends on your involvement level - you might spend 2-5 hours per week on projects, competitions, or self-study. We're flexible and understand academic priorities.</p>
+                        <p>Our weekly meetings are 1.5 hours every Friday. Additional time depends on your involvement
+                            level - you might spend 2-5 hours per week on projects, competitions, or self-study. We're
+                            flexible and understand academic priorities.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Can I join mid-semester?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely! We accept new members throughout the year. We'll help you catch up with current projects and pair you with a mentor to get you started. Just come to one of our Friday meetings or contact us via email.</p>
+                        <p>Absolutely! We accept new members throughout the year. We'll help you catch up with current
+                            projects and pair you with a mentor to get you started. Just come to one of our Friday
+                            meetings or contact us via email.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>What kind of projects do members work on?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Our projects range from beginner-friendly image classifiers to advanced research collaborations with Stanford. Recent projects include real-time object detection, sentiment analysis bots, game AI, and medical image analysis.</p>
+                        <p>Our projects range from beginner-friendly image classifiers to advanced research
+                            collaborations with Stanford. Recent projects include real-time object detection, sentiment
+                            analysis bots, game AI, and medical image analysis.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Do you participate in competitions?</h3>
                         <i class="fas fa-plus"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! We regularly participate in Kaggle competitions, Google AI challenges, and local hackathons. We've won several regional competitions and provide training and team support for members who want to compete.</p>
+                        <p>Yes! We regularly participate in Kaggle competitions, Google AI challenges, and local
+                            hackathons. We've won several regional competitions and provide training and team support
+                            for members who want to compete.</p>
                     </div>
                 </div>
             </div>
@@ -261,7 +291,7 @@
                         <div class="member-overlay">
                             <div class="social-links">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
-        
+
                             </div>
                         </div>
                     </div>
@@ -279,7 +309,7 @@
                         <div class="member-overlay">
                             <div class="social-links">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
-        
+
                             </div>
                         </div>
                     </div>
@@ -296,7 +326,7 @@
                         <div class="member-overlay">
                             <div class="social-links">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
-        
+
                             </div>
                         </div>
                     </div>
@@ -313,7 +343,7 @@
                         <div class="member-overlay">
                             <div class="social-links">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
-        
+
                             </div>
                         </div>
                     </div>
@@ -339,7 +369,8 @@
                     </div>
                     <p>Monta Vista High School's premier machine learning and artificial intelligence club.</p>
                     <div class="social-links">
-                        <a href="https://discord.com/invite/mTvPc9qVVt" target="_blank"><i class="fab fa-discord"></i></a> <!-- TODO: Update with actual ML Club Discord link -->
+                        <a href="https://discord.com/invite/mTvPc9qVVt" target="_blank"><i
+                                class="fab fa-discord"></i></a> <!-- TODO: Update with actual ML Club Discord link -->
                         <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -384,7 +415,8 @@
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot-message">
                     <div class="message-content">
-                        Hi! I'm your ML Club assistant. Ask me about our projects, events, or anything related to machine learning!
+                        Hi! I'm your ML Club assistant. Ask me about our projects, events, or anything related to
+                        machine learning!
                     </div>
                 </div>
             </div>
@@ -400,4 +432,5 @@
     <script src="js/main.js"></script>
     <script src="js/contact.js"></script>
 </body>
+
 </html>

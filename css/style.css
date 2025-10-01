@@ -68,9 +68,36 @@
 }
 
 /* Light theme variables */
+.light-mode {
+    --primary-color: #007aff;
+    --primary-dark: #005ecb;
+    --secondary-color: #34c759;
+    --accent-color: #ff3b30;
+    --background-dark: #ffffff;
+    --background-light: #f2f2f7;
+    --text-primary: #000000;
+    --text-secondary: #3c3c43;
+    --text-muted: #8e8e93;
+    --surface: #ffffff;
+    --surface-light: #f2f2f7;
+    --gradient-primary: linear-gradient(135deg, #007aff 0%, #34c759 100%);
+    --gradient-secondary: linear-gradient(135deg, #ff3b30 0%, #007aff 100%);
+    --shadow-primary: 0 10px 40px rgba(0, 122, 255, 0.2);
+    --shadow-secondary: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
 
+.light-mode .liquid-glass-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+    text-shadow: none;
+}
 
-
+.light-mode .liquid-glass-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+}
 
 html {
     scroll-behavior: smooth;
@@ -243,6 +270,80 @@ body {
     transition: 0.3s;
 }
 
+/* Theme switcher */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--surface);
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid var(--surface-light);
+}
+
+.sun-icon,
+.moon-icon {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.sun-icon.active,
+.moon-icon.active {
+    color: var(--primary-color);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--surface-light);
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -365,13 +466,14 @@ body {
     background: var(--gradient-primary);
     color: var(--text-primary);
     box-shadow: var(--shadow-primary);
-    animation: pulseButton 1.5s infinite alternate;
-    padding: 1rem 2.5rem;
+    padding: 1.1rem 2.8rem; /* Slightly larger padding */
     border-radius: 30px;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
 }
 
 @keyframes pulseButton {
@@ -902,13 +1004,14 @@ body {
 }
 
 .cta .btn-primary {
-    background-color: var(--surface-light);
-    color: var(--primary-color);
+    /* Revert to general .btn-primary styles for gradient and text color */
+    /* background-color: var(--surface-light); */
+    /* color: var(--primary-color); */
 }
 
 .cta .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px) scale(1.02); /* Consistent with other primary buttons */
+    box-shadow: 0 18px 30px rgba(10, 132, 255, 0.4); /* More vibrant shadow */
 }
 
 /* Advanced Topics Section */
@@ -2863,4 +2966,42 @@ body {
     .discord-info h2 {
         font-size: 2rem;
     }
+}
+
+/* Liquid Glass Button */
+.liquid-glass-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    border-radius: 15px; /* Softer corners for glass effect */
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+    color: var(--text-primary); /* White text */
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+}
+
+.liquid-glass-btn:hover {
+    background: rgba(255, 255, 255, 0.2); /* More opaque on hover */
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px) scale(1.02); /* Lift and slightly enlarge */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.liquid-glass-btn i {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    transition: transform 0.3s ease;
+}
+
+.liquid-glass-btn:hover i {
+    transform: rotate(5deg) scale(1.1);
 }

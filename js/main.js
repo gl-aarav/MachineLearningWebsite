@@ -89,13 +89,46 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
 
-    // Always default to dark theme
-    html.classList.add('dark-theme');
-    if (themeToggle) themeToggle.querySelector('i').classList.add('fa-moon');
-    localStorage.setItem('theme', 'dark-theme');
+    // Load saved theme from local storage or default to dark
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        html.classList.add(savedTheme);
+        if (savedTheme === 'light-mode') {
+            if (themeToggle) themeToggle.checked = true;
+            if (sunIcon) sunIcon.classList.add('active');
+            if (moonIcon) moonIcon.classList.remove('active');
+        } else {
+            if (sunIcon) sunIcon.classList.remove('active');
+            if (moonIcon) moonIcon.classList.add('active');
+        }
+    } else {
+        // Default to dark mode if no theme is saved
+        html.classList.add('dark-mode');
+        if (moonIcon) moonIcon.classList.add('active');
+        localStorage.setItem('theme', 'dark-mode');
+    }
 
-
+    // Toggle theme on switch change
+    if (themeToggle) {
+        themeToggle.addEventListener('change', () => {
+            if (html.classList.contains('dark-mode')) {
+                html.classList.remove('dark-mode');
+                html.classList.add('light-mode');
+                if (sunIcon) sunIcon.classList.add('active');
+                if (moonIcon) moonIcon.classList.remove('active');
+                localStorage.setItem('theme', 'light-mode');
+            } else {
+                html.classList.remove('light-mode');
+                html.classList.add('dark-mode');
+                if (sunIcon) sunIcon.classList.remove('active');
+                if (moonIcon) moonIcon.classList.add('active');
+                localStorage.setItem('theme', 'dark-mode');
+            }
+        });
+    }
 });
 
 
@@ -181,13 +214,13 @@ class DiscordEmbed {
 // Initialize Discord Embed
 document.addEventListener('DOMContentLoaded', () => {
     new DiscordEmbed();
-    
+
     // Add scroll to top button to the DOM
     const scrollTopBtn = document.createElement('div');
     scrollTopBtn.className = 'scroll-top-btn';
     scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     document.body.appendChild(scrollTopBtn);
-    
+
     // Show/hide scroll to top button based on scroll position
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
@@ -196,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTopBtn.classList.remove('visible');
         }
     });
-    
+
     // Scroll to top when button is clicked
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({
@@ -204,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
-    
+
     // Add animations to elements
     const animateElements = () => {
         // Add fade-in class to main elements
@@ -214,20 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index % 3 === 1) section.classList.add('fade-in-delay-1');
             if (index % 3 === 2) section.classList.add('fade-in-delay-2');
         });
-        
+
         // Add hover animations to buttons
         const buttons = document.querySelectorAll('.btn, button');
         buttons.forEach(button => {
             button.classList.add('btn-animated');
         });
-        
+
         // Add hover effects to cards
         const cards = document.querySelectorAll('.card, .resource-item, .project-card');
         cards.forEach(card => {
             card.classList.add('card-animated');
         });
     };
-    
+
     // Run animations
     animateElements();
 });
@@ -235,17 +268,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // Navbar scroll effect with theme sync
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    const isLight = document.documentElement.classList.contains('light-theme');
-    
-    // Always use current theme colors
+    const isLightMode = document.documentElement.classList.contains('light-mode');
+
     if (window.scrollY > 50) {
-        navbar.style.background = isLight ? 'rgba(19, 47, 76, 0.9)' : 'rgba(10, 25, 41, 0.9)';
+        navbar.style.background = isLightMode ? 'rgba(242, 242, 247, 0.9)' : 'rgba(10, 25, 41, 0.9)';
         navbar.style.backdropFilter = 'blur(15px)';
-        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(10, 132, 255, 0.1)';
+        navbar.style.boxShadow = isLightMode ? '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 122, 255, 0.05)' : '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(10, 132, 255, 0.1)';
     } else {
-        navbar.style.background = isLight ? 'rgba(19, 47, 76, 0.8)' : 'rgba(10, 25, 41, 0.8)';
+        navbar.style.background = isLightMode ? 'rgba(242, 242, 247, 0.8)' : 'rgba(10, 25, 41, 0.8)';
         navbar.style.backdropFilter = 'blur(15px)';
-        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 132, 255, 0.05)';
+        navbar.style.boxShadow = isLightMode ? '0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 122, 255, 0.02)' : '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 132, 255, 0.05)';
     }
 });
 
