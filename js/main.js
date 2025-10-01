@@ -87,33 +87,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Theme Toggle Functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleButton = document.getElementById('theme-toggle');
+    const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
-
-    const applyTheme = (theme) => {
-        html.classList.remove('light-mode', 'dark-mode');
-        html.classList.add(theme);
-        themeToggleButton.classList.remove('light-mode', 'dark-mode');
-        themeToggleButton.classList.add(theme);
-        localStorage.setItem('theme', theme);
-    };
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
 
     // Load saved theme from local storage or default to dark
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-        applyTheme(savedTheme);
+        html.classList.add(savedTheme);
+        if (savedTheme === 'light-mode') {
+            if (themeToggle) themeToggle.checked = true;
+            if (sunIcon) sunIcon.classList.add('active');
+            if (moonIcon) moonIcon.classList.remove('active');
+        } else {
+            if (sunIcon) sunIcon.classList.remove('active');
+            if (moonIcon) moonIcon.classList.add('active');
+        }
     } else {
         // Default to dark mode if no theme is saved
-        applyTheme('dark-mode');
+        html.classList.add('dark-mode');
+        if (moonIcon) moonIcon.classList.add('active');
+        localStorage.setItem('theme', 'dark-mode');
     }
 
-    // Toggle theme on button click
-    if (themeToggleButton) {
-        themeToggleButton.addEventListener('click', () => {
+    // Toggle theme on switch change
+    if (themeToggle) {
+        themeToggle.addEventListener('change', () => {
             if (html.classList.contains('dark-mode')) {
-                applyTheme('light-mode');
+                html.classList.remove('dark-mode');
+                html.classList.add('light-mode');
+                if (sunIcon) sunIcon.classList.add('active');
+                if (moonIcon) moonIcon.classList.remove('active');
+                localStorage.setItem('theme', 'light-mode');
             } else {
-                applyTheme('dark-mode');
+                html.classList.remove('light-mode');
+                html.classList.add('dark-mode');
+                if (sunIcon) sunIcon.classList.remove('active');
+                if (moonIcon) moonIcon.classList.add('active');
+                localStorage.setItem('theme', 'dark-mode');
             }
         });
     }
