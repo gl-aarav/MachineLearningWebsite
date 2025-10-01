@@ -57,6 +57,7 @@
     --accent-blue: #0a84ff;
     --accent-green: #00c853;
     --accent-red: #ff3b30;
+    --navbar-background: rgba(10, 25, 41, 0.8); /* Semi-transparent background */
 
     /* Spacing Variables */
     --spacing-xs: 0.5rem;
@@ -84,6 +85,8 @@
     --gradient-secondary: linear-gradient(135deg, #ff3b30 0%, #007aff 100%);
     --shadow-primary: 0 10px 40px rgba(0, 122, 255, 0.2);
     --shadow-secondary: 0 5px 20px rgba(0, 0, 0, 0.1);
+    --text-on-light-bg: #1a1a1a; /* A very dark grey, not pure black */
+    --navbar-background: rgba(255, 255, 255, 0.8); /* Semi-transparent white for light mode */
 }
 
 .light-mode .liquid-glass-btn {
@@ -147,7 +150,7 @@ body {
     transform: translateX(-50%);
     width: calc(100% - 40px);
     max-width: 1200px;
-    background: rgba(10, 25, 41, 0.8); /* Semi-transparent background */
+    background: var(--navbar-background);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 50px;
@@ -172,6 +175,24 @@ body {
 .navbar:hover {
     box-shadow: 0 15px 40px rgba(10, 132, 255, 0.3), 0 0 0 1px rgba(10, 132, 255, 0.2);
     transform: translateX(-50%) translateY(-2px);
+}
+
+/* Adjust text color for non-white backgrounds in light mode */
+.light-mode .discord-section,
+.light-mode .footer,
+.light-mode .team,
+.light-mode .history,
+.light-mode .project-filter,
+.light-mode .all-projects,
+.light-mode .event-calendar,
+.light-mode .calendar-day-header,
+.light-mode .calendar-legend,
+.light-mode .regular-schedule,
+.light-mode .resource-categories,
+.light-mode .resource-item,
+.light-mode .community-resources,
+.light-mode .faq-section {
+    color: var(--text-on-light-bg);
 }
 
 

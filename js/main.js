@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (moonIcon) moonIcon.classList.add('active');
                 localStorage.setItem('theme', 'dark-mode');
             }
+            updateNavbarTheme(); // Update navbar immediately after theme change
         });
     }
 });
@@ -264,12 +265,15 @@ document.addEventListener('DOMContentLoaded', () => {
     animateElements();
 });
 
-// Navbar scroll effect with theme sync
-window.addEventListener('scroll', () => {
+// Function to update navbar theme
+function updateNavbarTheme() {
     const navbar = document.querySelector('.navbar');
-    const isLightMode = document.documentElement.classList.contains('light-mode');
+    if (!navbar) return;
 
-    if (window.scrollY > 50) {
+    const isLightMode = document.documentElement.classList.contains('light-mode');
+    const scrolled = window.scrollY > 50;
+
+    if (scrolled) {
         navbar.style.background = isLightMode ? 'rgba(242, 242, 247, 0.9)' : 'rgba(10, 25, 41, 0.9)';
         navbar.style.backdropFilter = 'blur(15px)';
         navbar.style.boxShadow = isLightMode ? '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 122, 255, 0.05)' : '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(10, 132, 255, 0.1)';
@@ -278,7 +282,10 @@ window.addEventListener('scroll', () => {
         navbar.style.backdropFilter = 'blur(15px)';
         navbar.style.boxShadow = isLightMode ? '0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 122, 255, 0.02)' : '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 132, 255, 0.05)';
     }
-});
+}
+
+// Navbar scroll effect with theme sync
+window.addEventListener('scroll', updateNavbarTheme);
 
 // Parallax effect for hero background
 window.addEventListener('scroll', () => {
