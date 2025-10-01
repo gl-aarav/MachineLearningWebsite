@@ -77,13 +77,12 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for scroll animations
 document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.feature-card, .project-card, .hero-stats');
+    const animateElements = document.querySelectorAll('section:not(.hero), .hero-content, .hero-buttons .btn, .feature-card, .project-card, .hero-stats, .discord-content, .cta-content, .footer-section, .timeline-item, .value-card, .category-card, .resource-item, .guide-card, .community-card, .paper-card, .contact-form-container, .contact-info, .officer-card, .event-card, .highlight-card, .schedule-card, .path-step');
     animateElements.forEach(el => {
         el.classList.add('scroll-animate');
         observer.observe(el);
     });
 });
-
 
 // Theme Toggle Functionality
 document.addEventListener('DOMContentLoaded', () => {

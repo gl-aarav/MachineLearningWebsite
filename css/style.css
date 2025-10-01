@@ -103,28 +103,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Animations */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.fade-in-delay-1 {
-    animation-delay: 0.2s;
-}
-
-.fade-in-delay-2 {
-    animation-delay: 0.4s;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Card animations */
 .card-animated {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -384,18 +362,6 @@ input:checked+.slider:before {
     text-align: center;
     z-index: 2;
     max-width: 800px;
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .hero-title {
@@ -448,18 +414,6 @@ input:checked+.slider:before {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    animation: slideInUp 0.8s ease-out forwards;
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .btn-primary {
@@ -491,18 +445,12 @@ input:checked+.slider:before {
     background: transparent;
     color: var(--text-primary);
     border: 2px solid var(--surface);
-    animation: fadeIn 1s ease-out forwards;
     padding: 1rem 2.5rem;
     border-radius: 30px;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: all 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .btn-secondary:hover {
@@ -517,12 +465,10 @@ input:checked+.slider:before {
     gap: var(--spacing-xl);
     justify-content: center;
     z-index: 2;
-    animation: fadeIn 1.2s ease-out forwards;
 }
 
 .stat-item {
     text-align: center;
-    animation: slideInUp 1s ease-out forwards;
 }
 
 .stat-number {
@@ -559,18 +505,6 @@ input:checked+.slider:before {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: slideInDown 1s ease-out forwards;
-}
-
-@keyframes slideInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Features Section */
@@ -593,18 +527,6 @@ input:checked+.slider:before {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    animation: zoomIn 0.8s ease-out forwards;
-}
-
-@keyframes zoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 
 .feature-card::before {
@@ -638,18 +560,6 @@ input:checked+.slider:before {
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    animation: rotateIn 0.6s ease-out forwards;
-}
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-90deg);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0deg);
-    }
 }
 
 .feature-icon i {
@@ -1267,16 +1177,12 @@ input:checked+.slider:before {
     }
 }
 
-.fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Scroll animations */
-.scroll-animate {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
+    /* Scroll animations */
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+    }
 
 .scroll-animate.active {
     opacity: 1;
