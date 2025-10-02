@@ -46,18 +46,29 @@
                 </li>
             </ul>
             <div class="theme-switcher">
-                <div class="switch-container">
-                    <div class="sun-icon">
-                        <i class="fas fa-sun"></i>
+                <button class="insane-theme-button" id="theme-toggle-btn">
+                    <div class="button-background">
+                        <div class="cosmic-bg"></div>
+                        <div class="particle-field"></div>
+                        <div class="energy-rings"></div>
                     </div>
-                    <label class="switch">
-                        <input type="checkbox" id="theme-toggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <div class="moon-icon">
-                        <i class="fas fa-moon"></i>
+                    <div class="icon-container">
+                        <div class="sun-icon">
+                            <i class="fas fa-sun"></i>
+                            <div class="sun-rays"></div>
+                        </div>
+                        <div class="moon-icon">
+                            <i class="fas fa-moon"></i>
+                            <div class="moon-craters"></div>
+                            <div class="stars"></div>
+                        </div>
                     </div>
-                </div>
+                    <div class="button-text">
+                        <span class="mode-text">DARK</span>
+                    </div>
+                    <div class="ripple-container"></div>
+                    <div class="explosion-container"></div>
+                </button>
             </div>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -73,9 +84,49 @@
             <h1 class="page-title fade-in">Learning Resources</h1>
             <p class="page-subtitle fade-in fade-in-delay-1">Everything you need to start your machine learning journey
             </p>
-            <div class="search-container fade-in fade-in-delay-2">
-                <input type="text" id="resource-search" placeholder="Search resources..." class="search-input">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
+            <div class="advanced-search-container fade-in fade-in-delay-2">
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="resource-search" placeholder="Search resources, topics, or keywords..." class="search-input">
+                        <button class="clear-search" id="clear-search"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label>Difficulty:</label>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="beginner">Beginner</button>
+                            <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                            <button class="filter-btn" data-filter="advanced">Advanced</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Category:</label>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-category="all">All</button>
+                            <button class="filter-btn" data-category="courses">Courses</button>
+                            <button class="filter-btn" data-category="books">Books</button>
+                            <button class="filter-btn" data-category="tools">Tools</button>
+                            <button class="filter-btn" data-category="datasets">Datasets</button>
+                            <button class="filter-btn" data-category="papers">Papers</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort by:</label>
+                        <select id="sort-select" class="sort-select">
+                            <option value="relevance">Relevance</option>
+                            <option value="difficulty-asc">Difficulty (Easy → Hard)</option>
+                            <option value="difficulty-desc">Difficulty (Hard → Easy)</option>
+                            <option value="rating">Rating</option>
+                            <option value="popularity">Popularity</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-results-info">
+                    <span id="results-count">Showing all resources</span>
+                </div>
             </div>
         </div>
         <div class="hero-background"></div>
@@ -145,296 +196,18 @@
         </div>
     </section>
 
-    <!-- Resource Categories -->
-    <section class="resource-categories">
+    <!-- Comprehensive Resources Database -->
+    <section class="resources-database">
         <div class="container">
-            <h2 class="section-title">Resource Categories</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Platforms & Tools</h3>
-                    <div class="resource-list">
-                        <div class="resource-item">
-                            <h4>Kaggle</h4>
-                            <p>Data Science Community & Competitions</p>
-                            <div class="resource-tags">
-                                <span class="tag">Competitions</span>
-                                <span class="tag">Datasets</span>
-                            </div>
-                            <a href="https://www.kaggle.com/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Google AI</h4>
-                            <p>AI Research & Tools from Google</p>
-                            <div class="resource-tags">
-                                <span class="tag">Research</span>
-                                <span class="tag">Tools</span>
-                            </div>
-                            <a href="https://ai.google/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Google's Teachable Machine</h4>
-                            <p>Train a computer to recognize your own images, sounds, & poses.</p>
-                            <div class="resource-tags">
-                                <span class="tag">Beginner</span>
-                                <span class="tag">Tool</span>
-                            </div>
-                            <a href="https://teachablemachine.withgoogle.com/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Books & Textbooks</h3>
-                    <div class="resource-list">
-                        <div class="resource-item">
-                            <h4>Hands-On Machine Learning</h4>
-                            <p>by Aurélien Géron</p>
-                            <div class="resource-tags">
-                                <span class="tag">Beginner</span>
-                                <span class="tag">Practical</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Pattern Recognition and ML</h4>
-                            <p>by Christopher Bishop</p>
-                            <div class="resource-tags">
-                                <span class="tag">Advanced</span>
-                                <span class="tag">Theory</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Deep Learning</h4>
-                            <p>by Ian Goodfellow</p>
-                            <div class="resource-tags">
-                                <span class="tag">Advanced</span>
-                                <span class="tag">Deep Learning</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Online Courses</h3>
-                    <div class="resource-list">
-                        <div class="resource-item">
-                            <h4>ML Course by Andrew Ng</h4>
-                            <p>Stanford/Coursera</p>
-                            <div class="resource-tags">
-                                <span class="tag">Beginner</span>
-                                <span class="tag">Free</span>
-                            </div>
-                            <a href="https://www.coursera.org/learn/machine-learning" class="resource-link"
-                                target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Google ML Crash Course</h4>
-                            <p>Google for Developers</p>
-                            <div class="resource-tags">
-                                <span class="tag">Beginner</span>
-                                <span class="tag">Free</span>
-                            </div>
-                            <a href="https://developers.google.com/machine-learning/crash-course" class="resource-link"
-                                target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Fast.ai Deep Learning</h4>
-                            <p>Practical Deep Learning</p>
-                            <div class="resource-tags">
-                                <span class="tag">Intermediate</span>
-                                <span class="tag">Practical</span>
-                            </div>
-                            <a href="https://www.fast.ai/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>OpenML</h4>
-                            <p>Worldwide Machine Learning Lab</p>
-                            <div class="resource-tags">
-                                <span class="tag">All Levels</span>
-                                <span class="tag">Platform</span>
-                            </div>
-                            <a href="https://www.openml.org/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>CS231n Stanford</h4>
-                            <p>Computer Vision Course</p>
-                            <div class="resource-tags">
-                                <span class="tag">Advanced</span>
-                                <span class="tag">Computer Vision</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Platforms & Tools</h3>
-                    <div class="resource-list">
-                        <div class="resource-item">
-                            <h4>Kaggle</h4>
-                            <p>Data Science Community & Competitions</p>
-                            <div class="resource-tags">
-                                <span class="tag">Competitions</span>
-                                <span class="tag">Datasets</span>
-                            </div>
-                            <a href="https://www.kaggle.com/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="resource-item">
-                            <h4>Google AI</h4>
-                            <p>AI Research & Tools from Google</p>
-                            <div class="resource-tags">
-                                <span class="tag">Research</span>
-                                <span class="tag">Tools</span>
-                            </div>
-                            <a href="https://ai.google/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="resource-item">
-                            <h4>Google's Teachable Machine</h4>
-                            <p>Train a computer to recognize your own images, sounds, & poses.</p>
-                            <div class="resource-tags">
-                                <span class="tag">Beginner</span>
-                                <span class="tag">Tool</span>
-                            </div>
-                            <a href="https://teachablemachine.withgoogle.com/" class="resource-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Tools & Frameworks</h3>
-                    <div class="resource-list">
-                        <div class="resource-item">
-                            <h4>PyTorch</h4>
-                            <p>Deep Learning Framework</p>
-                            <div class="resource-tags">
-                                <span class="tag">Framework</span>
-                                <span class="tag">Popular</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Scikit-learn</h4>
-                            <p>ML Library for Python</p>
-                            <div class="resource-tags">
-                                <span class="tag">Library</span>
-                                <span class="tag">Beginner-friendly</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Jupyter Notebooks</h4>
-                            <p>Interactive Development</p>
-                            <div class="resource-tags">
-                                <span class="tag">Tool</span>
-                                <span class="tag">Essential</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Datasets</h3>
-                    <div class="resource-list">
-                        <div class="resource-item">
-                            <h4>ImageNet</h4>
-                            <p>Large-scale image database</p>
-                            <div class="resource-tags">
-                                <span class="tag">Computer Vision</span>
-                                <span class="tag">Large</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>IMDB Movie Reviews</h4>
-                            <p>Sentiment analysis dataset</p>
-                            <div class="resource-tags">
-                                <span class="tag">NLP</span>
-                                <span class="tag">Sentiment</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="resource-item">
-                            <h4>Kaggle Datasets</h4>
-                            <p>Various ML datasets</p>
-                            <div class="resource-tags">
-                                <span class="tag">Various</span>
-                                <span class="tag">Competition</span>
-                            </div>
-                            <a href="#" class="resource-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
+            <h2 class="section-title">Comprehensive ML Resources</h2>
+            <div class="resources-grid" id="resources-grid">
+                <!-- Resources will be dynamically populated by JavaScript -->
+            </div>
+            <div class="no-results" id="no-results" style="display: none;">
+                <div class="no-results-content">
+                    <i class="fas fa-search"></i>
+                    <h3>No resources found</h3>
+                    <p>Try adjusting your search terms or filters</p>
                 </div>
             </div>
         </div>
@@ -678,6 +451,7 @@
 
 
     <script src="js/main.js"></script>
+    <script src="js/resources.js"></script>
 </body>
 
 </html>

@@ -110,17 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Theme Toggle Functionality - Enhanced with Advanced Animations
+// INSANE THEME TOGGLE - MIND-BLOWING FUNCTIONALITY
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
+    const themeButton = document.getElementById('theme-toggle-btn');
     const html = document.documentElement;
     const sunIcon = document.querySelector('.sun-icon');
     const moonIcon = document.querySelector('.moon-icon');
-    const switchContainer = document.querySelector('.switch-container');
+    const modeText = document.querySelector('.mode-text');
+    const rippleContainer = document.querySelector('.ripple-container');
+    const explosionContainer = document.querySelector('.explosion-container');
 
-    // Create particle effects container
+    // Create INSANE particle effects container
     const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'theme-particles';
+    particlesContainer.className = 'insane-particles';
     particlesContainer.style.cssText = `
         position: fixed;
         top: 0;
@@ -128,34 +130,57 @@ document.addEventListener('DOMContentLoaded', () => {
         width: 100%;
         height: 100%;
         pointer-events: none;
-        z-index: 9999;
+        z-index: 10000;
         overflow: hidden;
     `;
     document.body.appendChild(particlesContainer);
 
-    // Particle creation function
-    function createParticles(x, y, isLightMode) {
-        const particleCount = 15;
-        const colors = isLightMode 
-            ? ['#ffd700', '#ffed4e', '#fff9e6', '#fffbf0']
-            : ['#b8c5d6', '#8899aa', '#667788', '#445566'];
+    // Create screen flash overlay
+    const flashOverlay = document.createElement('div');
+    flashOverlay.className = 'screen-flash';
+    flashOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    `;
+    document.body.appendChild(flashOverlay);
 
+    // Create smooth transition overlay
+    const transitionOverlay = document.createElement('div');
+    transitionOverlay.className = 'theme-transition-overlay';
+    document.body.appendChild(transitionOverlay);
+
+    // INSANE particle explosion function
+    function createInsaneParticles(x, y, isLightMode) {
+        const particleCount = 50;
+        const colors = isLightMode 
+            ? ['#ffd700', '#ffed4e', '#fff9e6', '#fffbf0', '#ff6b35', '#f7931e']
+            : ['#0ea5e9', '#a855f7', '#10b981', '#f43f5e', '#8b5cf6', '#06b6d4'];
+
+        // Create main explosion particles
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
-            const size = Math.random() * 6 + 3;
-            const angle = (Math.PI * 2 * i) / particleCount;
-            const velocity = Math.random() * 100 + 50;
+            const size = Math.random() * 8 + 4;
+            const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.5;
+            const velocity = Math.random() * 200 + 100;
             const color = colors[Math.floor(Math.random() * colors.length)];
+            const shape = Math.random() > 0.5 ? '50%' : '0%';
 
             particle.style.cssText = `
                 position: absolute;
                 width: ${size}px;
                 height: ${size}px;
                 background: ${color};
-                border-radius: 50%;
+                border-radius: ${shape};
                 left: ${x}px;
                 top: ${y}px;
-                box-shadow: 0 0 10px ${color};
+                box-shadow: 0 0 20px ${color}, 0 0 40px ${color};
                 pointer-events: none;
             `;
 
@@ -163,152 +188,316 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const tx = Math.cos(angle) * velocity;
             const ty = Math.sin(angle) * velocity;
+            const rotation = Math.random() * 720;
 
             particle.animate([
                 { 
-                    transform: 'translate(0, 0) scale(1)', 
-                    opacity: 1 
+                    transform: 'translate(0, 0) scale(1) rotate(0deg)', 
+                    opacity: 1,
+                    filter: `hue-rotate(0deg) brightness(1.5)`
                 },
                 { 
-                    transform: `translate(${tx}px, ${ty}px) scale(0)`, 
-                    opacity: 0 
+                    transform: `translate(${tx * 0.5}px, ${ty * 0.5}px) scale(1.5) rotate(${rotation * 0.5}deg)`, 
+                    opacity: 0.8,
+                    filter: `hue-rotate(180deg) brightness(2)`
+                },
+                { 
+                    transform: `translate(${tx}px, ${ty}px) scale(0) rotate(${rotation}deg)`, 
+                    opacity: 0,
+                    filter: `hue-rotate(360deg) brightness(0.5)`
                 }
             ], {
-                duration: 800 + Math.random() * 400,
-                easing: 'cubic-bezier(0, .9, .57, 1)',
+                duration: 1200 + Math.random() * 800,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 fill: 'forwards'
             }).onfinish = () => particle.remove();
         }
+
+        // Create secondary sparkle particles
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+                const sparkle = document.createElement('div');
+                const sparkleSize = Math.random() * 4 + 2;
+                const sparkleX = x + (Math.random() - 0.5) * 100;
+                const sparkleY = y + (Math.random() - 0.5) * 100;
+                
+                sparkle.style.cssText = `
+                    position: absolute;
+                    width: ${sparkleSize}px;
+                    height: ${sparkleSize}px;
+                    background: white;
+                    border-radius: 50%;
+                    left: ${sparkleX}px;
+                    top: ${sparkleY}px;
+                    box-shadow: 0 0 10px white;
+                    pointer-events: none;
+                `;
+                
+                particlesContainer.appendChild(sparkle);
+                
+                sparkle.animate([
+                    { opacity: 0, transform: 'scale(0)' },
+                    { opacity: 1, transform: 'scale(1)' },
+                    { opacity: 0, transform: 'scale(0)' }
+                ], {
+                    duration: 600,
+                    easing: 'ease-in-out'
+                }).onfinish = () => sparkle.remove();
+            }, Math.random() * 300);
+        }
     }
 
-    // Smooth color transition overlay
-    function createTransitionOverlay(isLightMode) {
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: ${isLightMode ? '#ffffff' : '#0a1929'};
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0;
-        `;
-        document.body.appendChild(overlay);
+    // Modern sophisticated screen transition effect
+    function createScreenFlash(isLightMode) {
+        const flashColor = isLightMode 
+            ? 'radial-gradient(circle, rgba(255,215,0,0.15) 0%, rgba(255,255,255,0.08) 50%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(14,165,233,0.12) 0%, rgba(168,85,247,0.06) 50%, transparent 100%)';
+        
+        flashOverlay.style.background = flashColor;
+        
+        // More subtle, modern transition effect
+        flashOverlay.animate([
+            { opacity: 0, transform: 'scale(1)', filter: 'blur(0px)' },
+            { opacity: 1, transform: 'scale(1.05)', filter: 'blur(1px)' },
+            { opacity: 0.3, transform: 'scale(1.02)', filter: 'blur(0.5px)' },
+            { opacity: 0, transform: 'scale(1)', filter: 'blur(0px)' }
+        ], {
+            duration: 1000,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)' // More modern easing
+        });
+    }
 
-        overlay.animate([
-            { opacity: 0 },
-            { opacity: 0.3 },
-            { opacity: 0 }
+    // Create ripple effect
+    function createRippleEffect(x, y, isLightMode) {
+        const ripple = document.createElement('div');
+        const color = isLightMode ? 'rgba(255, 215, 0, 0.6)' : 'rgba(14, 165, 233, 0.6)';
+        
+        ripple.style.cssText = `
+            position: absolute;
+            left: ${x - 25}px;
+            top: ${y - 25}px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: ${color};
+            pointer-events: none;
+        `;
+        
+        rippleContainer.appendChild(ripple);
+        
+        ripple.animate([
+            { transform: 'scale(0)', opacity: 1 },
+            { transform: 'scale(4)', opacity: 0 }
         ], {
             duration: 600,
-            easing: 'ease-in-out'
-        }).onfinish = () => overlay.remove();
+            easing: 'ease-out'
+        }).onfinish = () => ripple.remove();
     }
 
-    // Add sound effect (optional - uses Web Audio API)
-    function playToggleSound(isLightMode) {
+    // Modern sophisticated sound effects
+    function playModernSound(isLightMode) {
         try {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            oscillator.frequency.value = isLightMode ? 800 : 400;
-            oscillator.type = 'sine';
             
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.1);
+            if (isLightMode) {
+                // Light mode: Elegant ascending bell tones (modern UI sound)
+                const frequencies = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5 (major chord)
+                frequencies.forEach((freq, index) => {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        const filter = audioContext.createBiquadFilter();
+                        
+                        oscillator.connect(filter);
+                        filter.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = freq;
+                        oscillator.type = 'sine';
+                        
+                        // Add subtle filtering for modern sound
+                        filter.type = 'lowpass';
+                        filter.frequency.value = 2000;
+                        filter.Q.value = 1;
+                        
+                        gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.4);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.4);
+                    }, index * 80);
+                });
+            } else {
+                // Dark mode: Sophisticated descending tones (modern, not aggressive)
+                const frequencies = [880, 659.25, 554.37, 440]; // A5, E5, C#5, A4 (descending)
+                frequencies.forEach((freq, index) => {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        const filter = audioContext.createBiquadFilter();
+                        
+                        oscillator.connect(filter);
+                        filter.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = freq;
+                        oscillator.type = 'triangle'; // Warmer, softer sound
+                        
+                        // Modern filtering
+                        filter.type = 'lowpass';
+                        filter.frequency.value = 1500;
+                        filter.Q.value = 0.8;
+                        
+                        gainNode.gain.setValueAtTime(0.06, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                    }, index * 60);
+                });
+            }
         } catch (e) {
-            // Audio not supported, silently fail
+            console.log('Audio not supported');
         }
     }
 
-    // Load saved theme from local storage or default to dark
+    // Load saved theme and initialize insane button
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        html.classList.add(savedTheme);
-        if (savedTheme === 'light-mode') {
-            if (themeToggle) themeToggle.checked = true;
-            if (sunIcon) sunIcon.classList.add('active');
-            if (moonIcon) moonIcon.classList.remove('active');
-        } else {
-            if (sunIcon) sunIcon.classList.remove('active');
-            if (moonIcon) moonIcon.classList.add('active');
-        }
+    let isLightMode = false;
+    
+    if (savedTheme === 'light-mode') {
+        html.classList.add('light-mode');
+        if (themeButton) themeButton.classList.add('light-mode');
+        if (modeText) modeText.textContent = 'LIGHT';
+        isLightMode = true;
     } else {
-        // Default to dark mode if no theme is saved
         html.classList.add('dark-mode');
-        if (moonIcon) moonIcon.classList.add('active');
+        if (modeText) modeText.textContent = 'DARK';
         localStorage.setItem('theme', 'dark-mode');
     }
 
-    // Toggle theme on switch change with enhanced effects
-    if (themeToggle) {
-        themeToggle.addEventListener('change', (e) => {
-            const isLightMode = e.target.checked;
+    // INSANE theme toggle functionality with ultra-smooth transitions
+    if (themeButton) {
+        themeButton.addEventListener('click', (e) => {
+            e.preventDefault();
             
-            // Get switch position for particle origin
-            const rect = switchContainer.getBoundingClientRect();
+            // Prevent multiple clicks during transition
+            if (themeButton.classList.contains('transitioning')) return;
+            themeButton.classList.add('transitioning');
+            
+            // Get button position for effects
+            const rect = themeButton.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
             const y = rect.top + rect.height / 2;
-
-            if (html.classList.contains('dark-mode')) {
-                html.classList.remove('dark-mode');
-                html.classList.add('light-mode');
-                if (sunIcon) sunIcon.classList.add('active');
-                if (moonIcon) moonIcon.classList.remove('active');
-                localStorage.setItem('theme', 'light-mode');
-                
-                // Trigger effects
-                createParticles(x, y, true);
-                createTransitionOverlay(true);
-                playToggleSound(true);
-            } else {
-                html.classList.remove('light-mode');
-                html.classList.add('dark-mode');
-                if (sunIcon) sunIcon.classList.remove('active');
-                if (moonIcon) moonIcon.classList.add('active');
-                localStorage.setItem('theme', 'dark-mode');
-                
-                // Trigger effects
-                createParticles(x, y, false);
-                createTransitionOverlay(false);
-                playToggleSound(false);
-            }
             
-            updateNavbarTheme(); // Update navbar immediately after theme change
+            // Create ripple at click position
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            createRippleEffect(clickX, clickY, !isLightMode);
             
-            // Add theme transition effect to navbar
-            const navbar = document.querySelector('.navbar');
-            if (navbar) {
-                navbar.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                setTimeout(() => {
-                    navbar.style.transition = '';
-                }, 600);
-            }
+            // Add smooth transition class to body
+            document.body.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
             
-            // Add haptic feedback if available
+            // Activate transition overlay for ultra-smooth experience
+            transitionOverlay.classList.add('active');
+            
+            // Staggered theme transition
+            setTimeout(() => {
+                // Toggle theme with INSANE effects
+                if (html.classList.contains('dark-mode')) {
+                    // Switch to light mode
+                    html.classList.remove('dark-mode');
+                    html.classList.add('light-mode');
+                    themeButton.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light-mode');
+                    isLightMode = true;
+                    
+                    // Smooth text transition
+                    if (modeText) {
+                        modeText.style.opacity = '0';
+                        modeText.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            modeText.textContent = 'LIGHT';
+                            modeText.style.opacity = '1';
+                            modeText.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                    
+                    // Modern light mode effects
+                    createInsaneParticles(x, y, true);
+                    createScreenFlash(true);
+                    playModernSound(true);
+                    
+                } else {
+                    // Switch to dark mode
+                    html.classList.remove('light-mode');
+                    html.classList.add('dark-mode');
+                    themeButton.classList.remove('light-mode');
+                    localStorage.setItem('theme', 'dark-mode');
+                    isLightMode = false;
+                    
+                    // Smooth text transition
+                    if (modeText) {
+                        modeText.style.opacity = '0';
+                        modeText.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            modeText.textContent = 'DARK';
+                            modeText.style.opacity = '1';
+                            modeText.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                    
+                    // Modern dark mode effects
+                    createInsaneParticles(x, y, false);
+                    createScreenFlash(false);
+                    playModernSound(false);
+                }
+            }, 100);
+            
+            // Update navbar with smooth transition
+            setTimeout(() => {
+                updateNavbarTheme();
+            }, 200);
+            
+            // Add subtle haptic feedback
             if (navigator.vibrate) {
-                navigator.vibrate(10);
+                navigator.vibrate([30, 20, 30]); // More subtle vibration
             }
+            
+            // Remove transition lock after animation completes
+            setTimeout(() => {
+                themeButton.classList.remove('transitioning');
+                document.body.style.transition = '';
+                transitionOverlay.classList.remove('active');
+            }, 1200);
         });
-
-        // Add hover sound effect
-        switchContainer.addEventListener('mouseenter', () => {
-            switchContainer.style.transform = 'translateY(-2px)';
+        
+        // Enhanced hover effects
+        themeButton.addEventListener('mouseenter', () => {
+            themeButton.style.transform = 'translateY(-3px) scale(1.05) rotateX(5deg)';
         });
-
-        switchContainer.addEventListener('mouseleave', () => {
-            switchContainer.style.transform = '';
+        
+        themeButton.addEventListener('mouseleave', () => {
+            themeButton.style.transform = '';
         });
     }
+    
+    // Add screen shake keyframes
+    const shakeKeyframes = `
+        @keyframes screenShake {
+            0%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-2px) rotate(0.5deg); }
+            20% { transform: translateX(2px) rotate(-0.5deg); }
+            30% { transform: translateX(-1px) rotate(0.3deg); }
+            40% { transform: translateX(1px) rotate(-0.3deg); }
+            50% { transform: translateX(-0.5px) rotate(0.1deg); }
+            60% { transform: translateX(0.5px) rotate(-0.1deg); }
+        }
+    `;
+    
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = shakeKeyframes;
+    document.head.appendChild(styleSheet);
 });
 
 
