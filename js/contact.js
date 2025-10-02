@@ -1,13 +1,16 @@
 // Contact page specific JavaScript
 
+// Discord Webhook URL - Replace with your actual webhook URL
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1423179522047737957/51eslIOzR-45Qy_Pa5ausrN-UG563kULPlMbjUzpwn_wtd35lQlGltu6mmGrH5YRg2RI';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Contact form handling
     const contactForm = document.getElementById('contactForm');
-    
+
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
     }
-    
+
     // FAQ accordion functionality
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
@@ -16,71 +19,149 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    
+
     // Validate form data
     if (!validateForm(data)) {
-        return;
+        return false;
     }
-    
+
     // Show loading state
     const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<div class="loading"></div><span>Sending...</span>';
+    const originalHTML = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
     submitBtn.disabled = true;
-    
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
+
+    try {
+        // Send to Discord webhook
+        await sendToDiscord(data);
+
         // Show success message
         showNotification('Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
-        
+
         // Reset form
         e.target.reset();
-        
+
+    } catch (error) {
+        console.error('Error sending message:', error);
+        showNotification('Failed to send message. Please try again or contact us directly at mvmlclub@gmail.com', 'error');
+    } finally {
         // Reset button
-        submitBtn.innerHTML = originalText;
+        submitBtn.innerHTML = originalHTML;
         submitBtn.disabled = false;
-    }, 2000);
+    }
+
+    return false;
+}
+
+async function sendToDiscord(data) {
+    // Get experience level label
+    const experienceLevels = {
+        'beginner': 'Beginner (No prior experience)',
+        'intermediate': 'Intermediate (Some coding/ML knowledge)',
+        'advanced': 'Advanced (Experienced with ML projects)'
+    };
+
+    // Create Discord embed
+    const embed = {
+        title: "🎓 New ML Club Contact Form Submission",
+        color: 0x0ea5e9, // Sky blue color
+        fields: [
+            {
+                name: "👤 Name",
+                value: data.name,
+                inline: true
+            },
+            {
+                name: "📧 Email",
+                value: data.email,
+                inline: true
+            },
+            {
+                name: "📚 Grade Level",
+                value: data.grade === 'other' ? 'Other' : `${data.grade}th Grade`,
+                inline: true
+            },
+            {
+                name: "🎯 Area of Interest",
+                value: data.interest.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+                inline: true
+            },
+            {
+                name: "💡 Experience Level",
+                value: experienceLevels[data.experience] || data.experience,
+                inline: true
+            },
+            {
+                name: "💬 Message",
+                value: data.message || "No message provided",
+                inline: false
+            }
+        ],
+        timestamp: new Date().toISOString(),
+        footer: {
+            text: "ML Club Contact Form"
+        }
+    };
+
+    // Send to Discord
+    const response = await fetch(DISCORD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username: "ML Club Bot",
+            avatar_url: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
+            embeds: [embed]
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to send to Discord');
+    }
+
+    return response;
 }
 
 function validateForm(data) {
     const errors = [];
-    
+
     // Validate required fields
     if (!data.name || data.name.trim().length < 2) {
         errors.push('Please enter a valid name (at least 2 characters)');
     }
-    
+
     if (!data.email || !validateEmail(data.email)) {
         errors.push('Please enter a valid email address');
     }
-    
+
     if (!data.grade) {
         errors.push('Please select your grade level');
     }
-    
+
     if (!data.interest) {
         errors.push('Please select your area of interest');
     }
-    
+
     if (!data.experience) {
         errors.push('Please select your experience level');
     }
-    
+
     if (!data.message || data.message.trim().length < 10) {
         errors.push('Please enter a message (at least 10 characters)');
     }
-    
+
     // Display errors if any
     if (errors.length > 0) {
         showNotification(errors.join('<br>'), 'error');
         return false;
     }
-    
+
     return true;
 }
 
@@ -93,7 +174,7 @@ function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -106,7 +187,7 @@ function showNotification(message, type = 'info') {
             <i class="fas fa-times"></i>
         </button>
     `;
-    
+
     // Add styles
     notification.style.cssText = `
         position: fixed;
@@ -122,22 +203,22 @@ function showNotification(message, type = 'info') {
         transform: translateX(100%);
         transition: transform 0.3s ease;
     `;
-    
+
     // Add notification to DOM
     document.body.appendChild(notification);
-    
+
     // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Add close functionality
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => notification.remove(), 300);
     });
-    
+
     // Auto-remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
@@ -151,7 +232,7 @@ function toggleFAQ(item) {
     const answer = item.querySelector('.faq-answer');
     const icon = item.querySelector('.faq-question i');
     const isOpen = item.classList.contains('active');
-    
+
     // Close all other FAQ items
     document.querySelectorAll('.faq-item').forEach(faqItem => {
         if (faqItem !== item) {
@@ -160,7 +241,7 @@ function toggleFAQ(item) {
             faqItem.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
         }
     });
-    
+
     // Toggle current item
     if (isOpen) {
         item.classList.remove('active');
