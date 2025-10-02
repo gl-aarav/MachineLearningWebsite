@@ -84,12 +84,125 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Theme Toggle Functionality
+// Theme Toggle Functionality - Enhanced with Advanced Animations
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
     const sunIcon = document.querySelector('.sun-icon');
     const moonIcon = document.querySelector('.moon-icon');
+    const switchContainer = document.querySelector('.switch-container');
+
+    // Create particle effects container
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'theme-particles';
+    particlesContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        overflow: hidden;
+    `;
+    document.body.appendChild(particlesContainer);
+
+    // Particle creation function
+    function createParticles(x, y, isLightMode) {
+        const particleCount = 15;
+        const colors = isLightMode 
+            ? ['#ffd700', '#ffed4e', '#fff9e6', '#fffbf0']
+            : ['#b8c5d6', '#8899aa', '#667788', '#445566'];
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            const size = Math.random() * 6 + 3;
+            const angle = (Math.PI * 2 * i) / particleCount;
+            const velocity = Math.random() * 100 + 50;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            particle.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${color};
+                border-radius: 50%;
+                left: ${x}px;
+                top: ${y}px;
+                box-shadow: 0 0 10px ${color};
+                pointer-events: none;
+            `;
+
+            particlesContainer.appendChild(particle);
+
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+
+            particle.animate([
+                { 
+                    transform: 'translate(0, 0) scale(1)', 
+                    opacity: 1 
+                },
+                { 
+                    transform: `translate(${tx}px, ${ty}px) scale(0)`, 
+                    opacity: 0 
+                }
+            ], {
+                duration: 800 + Math.random() * 400,
+                easing: 'cubic-bezier(0, .9, .57, 1)',
+                fill: 'forwards'
+            }).onfinish = () => particle.remove();
+        }
+    }
+
+    // Smooth color transition overlay
+    function createTransitionOverlay(isLightMode) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: ${isLightMode ? '#ffffff' : '#0a1929'};
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+        `;
+        document.body.appendChild(overlay);
+
+        overlay.animate([
+            { opacity: 0 },
+            { opacity: 0.3 },
+            { opacity: 0 }
+        ], {
+            duration: 600,
+            easing: 'ease-in-out'
+        }).onfinish = () => overlay.remove();
+    }
+
+    // Add sound effect (optional - uses Web Audio API)
+    function playToggleSound(isLightMode) {
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = isLightMode ? 800 : 400;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        } catch (e) {
+            // Audio not supported, silently fail
+        }
+    }
 
     // Load saved theme from local storage or default to dark
     const savedTheme = localStorage.getItem('theme');
@@ -110,23 +223,55 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', 'dark-mode');
     }
 
-    // Toggle theme on switch change
+    // Toggle theme on switch change with enhanced effects
     if (themeToggle) {
-        themeToggle.addEventListener('change', () => {
+        themeToggle.addEventListener('change', (e) => {
+            const isLightMode = e.target.checked;
+            
+            // Get switch position for particle origin
+            const rect = switchContainer.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
             if (html.classList.contains('dark-mode')) {
                 html.classList.remove('dark-mode');
                 html.classList.add('light-mode');
                 if (sunIcon) sunIcon.classList.add('active');
                 if (moonIcon) moonIcon.classList.remove('active');
                 localStorage.setItem('theme', 'light-mode');
+                
+                // Trigger effects
+                createParticles(x, y, true);
+                createTransitionOverlay(true);
+                playToggleSound(true);
             } else {
                 html.classList.remove('light-mode');
                 html.classList.add('dark-mode');
                 if (sunIcon) sunIcon.classList.remove('active');
                 if (moonIcon) moonIcon.classList.add('active');
                 localStorage.setItem('theme', 'dark-mode');
+                
+                // Trigger effects
+                createParticles(x, y, false);
+                createTransitionOverlay(false);
+                playToggleSound(false);
             }
+            
             updateNavbarTheme(); // Update navbar immediately after theme change
+            
+            // Add haptic feedback if available
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        });
+
+        // Add hover sound effect
+        switchContainer.addEventListener('mouseenter', () => {
+            switchContainer.style.transform = 'translateY(-2px)';
+        });
+
+        switchContainer.addEventListener('mouseleave', () => {
+            switchContainer.style.transform = '';
         });
     }
 });
