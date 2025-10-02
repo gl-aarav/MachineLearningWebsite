@@ -4,11 +4,18 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-// Navigation Toggle
+// Enhanced Navigation Toggle with animations
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        
+        // Add body scroll lock when menu is open
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     });
 
     // Close menu when clicking on a link
@@ -16,7 +23,26 @@ if (hamburger && navMenu) {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
         });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 }
 
@@ -259,6 +285,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             updateNavbarTheme(); // Update navbar immediately after theme change
             
+            // Add theme transition effect to navbar
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                navbar.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                setTimeout(() => {
+                    navbar.style.transition = '';
+                }, 600);
+            }
+            
             // Add haptic feedback if available
             if (navigator.vibrate) {
                 navigator.vibrate(10);
@@ -410,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateElements();
 });
 
-// Function to update navbar theme
+// Enhanced navbar theme and scroll effects
 function updateNavbarTheme() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
@@ -418,19 +453,83 @@ function updateNavbarTheme() {
     const isLightMode = document.documentElement.classList.contains('light-mode');
     const scrolled = window.scrollY > 50;
 
+    // The scrolled class now handles most styling via CSS
+    // This function now focuses on dynamic theme switching
     if (scrolled) {
-        navbar.style.background = isLightMode ? 'rgba(242, 242, 247, 0.9)' : 'rgba(10, 25, 41, 0.9)';
-        navbar.style.backdropFilter = 'blur(15px)';
-        navbar.style.boxShadow = isLightMode ? '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 122, 255, 0.05)' : '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(10, 132, 255, 0.1)';
+        if (isLightMode) {
+            navbar.style.setProperty('--navbar-bg', 'rgba(255, 255, 255, 0.95)');
+            navbar.style.setProperty('--navbar-shadow', '0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 122, 255, 0.1)');
+        } else {
+            navbar.style.setProperty('--navbar-bg', 'rgba(15, 23, 42, 0.95)');
+            navbar.style.setProperty('--navbar-shadow', '0 20px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(10, 132, 255, 0.15)');
+        }
     } else {
-        navbar.style.background = isLightMode ? 'rgba(242, 242, 247, 0.8)' : 'rgba(10, 25, 41, 0.8)';
-        navbar.style.backdropFilter = 'blur(15px)';
-        navbar.style.boxShadow = isLightMode ? '0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 122, 255, 0.02)' : '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 132, 255, 0.05)';
+        if (isLightMode) {
+            navbar.style.setProperty('--navbar-bg', 'rgba(255, 255, 255, 0.85)');
+            navbar.style.setProperty('--navbar-shadow', '0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 122, 255, 0.02)');
+        } else {
+            navbar.style.setProperty('--navbar-bg', 'rgba(15, 23, 42, 0.85)');
+            navbar.style.setProperty('--navbar-shadow', '0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(10, 132, 255, 0.05)');
+        }
     }
 }
 
-// Navbar scroll effect with theme sync
-window.addEventListener('scroll', updateNavbarTheme);
+// Active page highlighting
+function updateActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Initialize active link highlighting
+document.addEventListener('DOMContentLoaded', updateActiveNavLink);
+
+// Enhanced navbar scroll effects
+let lastScrollY = window.scrollY;
+let ticking = false;
+
+function updateNavbarOnScroll() {
+    const navbar = document.querySelector('.navbar');
+    const currentScrollY = window.scrollY;
+    
+    if (!navbar) return;
+    
+    // Add scrolled class for enhanced styling
+    if (currentScrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+    
+    // Hide/show navbar based on scroll direction
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide navbar
+        navbar.style.transform = 'translateX(-50%) translateY(-100%)';
+    } else {
+        // Scrolling up - show navbar
+        navbar.style.transform = 'translateX(-50%) translateY(0)';
+    }
+    
+    lastScrollY = currentScrollY;
+    updateNavbarTheme();
+    ticking = false;
+}
+
+function requestScrollUpdate() {
+    if (!ticking) {
+        requestAnimationFrame(updateNavbarOnScroll);
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', requestScrollUpdate);
 
 // Parallax effect for hero background
 window.addEventListener('scroll', () => {

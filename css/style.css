@@ -290,6 +290,18 @@ body {
     transform: translateX(-50%) translateY(-2px);
 }
 
+/* Navbar scroll effect enhancement */
+.navbar.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(10, 132, 255, 0.15);
+}
+
+.light-mode .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 122, 255, 0.1);
+}
+
 /* Adjust text color for non-white backgrounds in light mode */
 .light-mode .discord-section,
 .light-mode .footer,
@@ -518,21 +530,55 @@ body {
     width: 0;
     height: 2px;
     background: var(--gradient-primary);
-    transition: width 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-radius: 1px;
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 100%;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
 }
 
+.nav-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Enhanced active state */
+.nav-link.active {
+    background: rgba(14, 165, 233, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
 
 .bar {
     width: 25px;
     height: 3px;
     background: var(--text-primary);
     margin: 3px 0;
-    transition: 0.3s;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-radius: 2px;
+    transform-origin: center;
 }
 
 /* Theme switcher - Ultra Modern Design */
@@ -1683,34 +1729,92 @@ input:checked:hover + .slider {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 110px;
         flex-direction: column;
-        background: var(--background-dark);
-        width: 100%;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        width: calc(100% - 40px);
+        left: 20px;
         text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(10, 132, 255, 0.2);
         padding: 2rem 0;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform: translateX(-100%) scale(0.9);
+        opacity: 0;
+    }
+
+    .light-mode .nav-menu {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 122, 255, 0.1);
     }
 
     .nav-menu.active {
-        left: 0;
+        left: 20px;
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    .nav-menu .nav-item {
+        margin: 0.5rem 0;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: slideInUp 0.3s ease forwards;
+    }
+
+    .nav-menu.active .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .nav-menu.active .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .nav-menu.active .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .nav-menu.active .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    .nav-menu.active .nav-item:nth-child(5) { animation-delay: 0.5s; }
+    .nav-menu.active .nav-item:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideInUp {
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .nav-menu .nav-link {
+        display: block;
+        padding: 1rem 2rem;
+        margin: 0.5rem 1rem;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link.active {
+        background: rgba(14, 165, 233, 0.15);
+        transform: translateX(10px);
+        color: var(--primary-color);
     }
 
     .hamburger {
         display: flex;
     }
 
+    .hamburger.active {
+        background: rgba(14, 165, 233, 0.2);
+        border-color: rgba(14, 165, 233, 0.3);
+    }
+
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
     }
 
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
+        background: var(--primary-color);
     }
 
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+        background: var(--primary-color);
     }
 
     .hero-stats {
