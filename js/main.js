@@ -9,7 +9,7 @@ if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
-        
+
         // Add body scroll lock when menu is open
         if (navMenu.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // INSANE particle explosion function
     function createInsaneParticles(x, y, isLightMode) {
         const particleCount = 50;
-        const colors = isLightMode 
+        const colors = isLightMode
             ? ['#ffd700', '#ffed4e', '#fff9e6', '#fffbf0', '#ff6b35', '#f7931e']
             : ['#0ea5e9', '#a855f7', '#10b981', '#f43f5e', '#8b5cf6', '#06b6d4'];
 
@@ -191,18 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const rotation = Math.random() * 720;
 
             particle.animate([
-                { 
-                    transform: 'translate(0, 0) scale(1) rotate(0deg)', 
+                {
+                    transform: 'translate(0, 0) scale(1) rotate(0deg)',
                     opacity: 1,
                     filter: `hue-rotate(0deg) brightness(1.5)`
                 },
-                { 
-                    transform: `translate(${tx * 0.5}px, ${ty * 0.5}px) scale(1.5) rotate(${rotation * 0.5}deg)`, 
+                {
+                    transform: `translate(${tx * 0.5}px, ${ty * 0.5}px) scale(1.5) rotate(${rotation * 0.5}deg)`,
                     opacity: 0.8,
                     filter: `hue-rotate(180deg) brightness(2)`
                 },
-                { 
-                    transform: `translate(${tx}px, ${ty}px) scale(0) rotate(${rotation}deg)`, 
+                {
+                    transform: `translate(${tx}px, ${ty}px) scale(0) rotate(${rotation}deg)`,
                     opacity: 0,
                     filter: `hue-rotate(360deg) brightness(0.5)`
                 }
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sparkleSize = Math.random() * 4 + 2;
                 const sparkleX = x + (Math.random() - 0.5) * 100;
                 const sparkleY = y + (Math.random() - 0.5) * 100;
-                
+
                 sparkle.style.cssText = `
                     position: absolute;
                     width: ${sparkleSize}px;
@@ -232,9 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     box-shadow: 0 0 10px white;
                     pointer-events: none;
                 `;
-                
+
                 particlesContainer.appendChild(sparkle);
-                
+
                 sparkle.animate([
                     { opacity: 0, transform: 'scale(0)' },
                     { opacity: 1, transform: 'scale(1)' },
@@ -249,12 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Modern sophisticated screen transition effect
     function createScreenFlash(isLightMode) {
-        const flashColor = isLightMode 
+        const flashColor = isLightMode
             ? 'radial-gradient(circle, rgba(255,215,0,0.15) 0%, rgba(255,255,255,0.08) 50%, transparent 100%)'
             : 'radial-gradient(circle, rgba(14,165,233,0.12) 0%, rgba(168,85,247,0.06) 50%, transparent 100%)';
-        
+
         flashOverlay.style.background = flashColor;
-        
+
         // More subtle, modern transition effect
         flashOverlay.animate([
             { opacity: 0, transform: 'scale(1)', filter: 'blur(0px)' },
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createRippleEffect(x, y, isLightMode) {
         const ripple = document.createElement('div');
         const color = isLightMode ? 'rgba(255, 215, 0, 0.6)' : 'rgba(14, 165, 233, 0.6)';
-        
+
         ripple.style.cssText = `
             position: absolute;
             left: ${x - 25}px;
@@ -282,9 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
             background: ${color};
             pointer-events: none;
         `;
-        
+
         rippleContainer.appendChild(ripple);
-        
+
         ripple.animate([
             { transform: 'scale(0)', opacity: 1 },
             { transform: 'scale(4)', opacity: 0 }
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function playModernSound(isLightMode) {
         try {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            
+
             if (isLightMode) {
                 // Light mode: Elegant ascending bell tones (modern UI sound)
                 const frequencies = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5 (major chord)
@@ -307,22 +307,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         const oscillator = audioContext.createOscillator();
                         const gainNode = audioContext.createGain();
                         const filter = audioContext.createBiquadFilter();
-                        
+
                         oscillator.connect(filter);
                         filter.connect(gainNode);
                         gainNode.connect(audioContext.destination);
-                        
+
                         oscillator.frequency.value = freq;
                         oscillator.type = 'sine';
-                        
+
                         // Add subtle filtering for modern sound
                         filter.type = 'lowpass';
                         filter.frequency.value = 2000;
                         filter.Q.value = 1;
-                        
+
                         gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
                         gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.4);
-                        
+
                         oscillator.start(audioContext.currentTime);
                         oscillator.stop(audioContext.currentTime + 0.4);
                     }, index * 80);
@@ -335,22 +335,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         const oscillator = audioContext.createOscillator();
                         const gainNode = audioContext.createGain();
                         const filter = audioContext.createBiquadFilter();
-                        
+
                         oscillator.connect(filter);
                         filter.connect(gainNode);
                         gainNode.connect(audioContext.destination);
-                        
+
                         oscillator.frequency.value = freq;
                         oscillator.type = 'triangle'; // Warmer, softer sound
-                        
+
                         // Modern filtering
                         filter.type = 'lowpass';
                         filter.frequency.value = 1500;
                         filter.Q.value = 0.8;
-                        
+
                         gainNode.gain.setValueAtTime(0.06, audioContext.currentTime);
                         gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
-                        
+
                         oscillator.start(audioContext.currentTime);
                         oscillator.stop(audioContext.currentTime + 0.5);
                     }, index * 60);
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load saved theme and initialize insane button
     const savedTheme = localStorage.getItem('theme');
     let isLightMode = false;
-    
+
     if (savedTheme === 'light-mode') {
         html.classList.add('light-mode');
         if (themeButton) themeButton.classList.add('light-mode');
@@ -380,27 +380,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeButton) {
         themeButton.addEventListener('click', (e) => {
             e.preventDefault();
-            
+
             // Prevent multiple clicks during transition
             if (themeButton.classList.contains('transitioning')) return;
             themeButton.classList.add('transitioning');
-            
+
             // Get button position for effects
             const rect = themeButton.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
             const y = rect.top + rect.height / 2;
-            
+
             // Create ripple at click position
             const clickX = e.clientX - rect.left;
             const clickY = e.clientY - rect.top;
             createRippleEffect(clickX, clickY, !isLightMode);
-            
+
             // Add smooth transition class to body
             document.body.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-            
+
             // Activate transition overlay for ultra-smooth experience
             transitionOverlay.classList.add('active');
-            
+
             // Staggered theme transition
             setTimeout(() => {
                 // Toggle theme with INSANE effects
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     themeButton.classList.add('light-mode');
                     localStorage.setItem('theme', 'light-mode');
                     isLightMode = true;
-                    
+
                     // Smooth text transition
                     if (modeText) {
                         modeText.style.opacity = '0';
@@ -422,12 +422,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             modeText.style.transform = 'scale(1)';
                         }, 300);
                     }
-                    
+
                     // Modern light mode effects
                     createInsaneParticles(x, y, true);
                     createScreenFlash(true);
                     playModernSound(true);
-                    
+
                 } else {
                     // Switch to dark mode
                     html.classList.remove('light-mode');
@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     themeButton.classList.remove('light-mode');
                     localStorage.setItem('theme', 'dark-mode');
                     isLightMode = false;
-                    
+
                     // Smooth text transition
                     if (modeText) {
                         modeText.style.opacity = '0';
@@ -446,24 +446,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             modeText.style.transform = 'scale(1)';
                         }, 300);
                     }
-                    
+
                     // Modern dark mode effects
                     createInsaneParticles(x, y, false);
                     createScreenFlash(false);
                     playModernSound(false);
                 }
             }, 100);
-            
+
             // Update navbar with smooth transition
             setTimeout(() => {
                 updateNavbarTheme();
             }, 200);
-            
+
             // Add subtle haptic feedback
             if (navigator.vibrate) {
                 navigator.vibrate([30, 20, 30]); // More subtle vibration
             }
-            
+
             // Remove transition lock after animation completes
             setTimeout(() => {
                 themeButton.classList.remove('transitioning');
@@ -471,17 +471,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 transitionOverlay.classList.remove('active');
             }, 1200);
         });
-        
+
         // Enhanced hover effects
         themeButton.addEventListener('mouseenter', () => {
             themeButton.style.transform = 'translateY(-3px) scale(1.05) rotateX(5deg)';
         });
-        
+
         themeButton.addEventListener('mouseleave', () => {
             themeButton.style.transform = '';
         });
     }
-    
+
     // Add screen shake keyframes
     const shakeKeyframes = `
         @keyframes screenShake {
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
             60% { transform: translateX(0.5px) rotate(-0.1deg); }
         }
     `;
-    
+
     const styleSheet = document.createElement('style');
     styleSheet.textContent = shakeKeyframes;
     document.head.appendChild(styleSheet);
@@ -667,7 +667,7 @@ function updateNavbarTheme() {
 function updateActiveNavLink() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         const linkPage = link.getAttribute('href');
@@ -687,16 +687,16 @@ let ticking = false;
 function updateNavbarOnScroll() {
     const navbar = document.querySelector('.navbar');
     const currentScrollY = window.scrollY;
-    
+
     if (!navbar) return;
-    
+
     // Add scrolled class for enhanced styling
     if (currentScrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-    
+
     // Hide/show navbar based on scroll direction
     if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down - hide navbar
@@ -705,7 +705,7 @@ function updateNavbarOnScroll() {
         // Scrolling up - show navbar
         navbar.style.transform = 'translateX(-50%) translateY(0)';
     }
-    
+
     lastScrollY = currentScrollY;
     updateNavbarTheme();
     ticking = false;

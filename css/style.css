@@ -643,10 +643,10 @@ body {
 
 .insane-theme-button {
     position: relative;
-    width: 120px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: none;
-    border-radius: 25px;
+    border-radius: 50%;
     cursor: pointer;
     overflow: hidden;
     background: transparent;
@@ -663,7 +663,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 25px;
+    border-radius: 50%;
     overflow: hidden;
     background: linear-gradient(145deg, 
         rgba(15, 23, 42, 0.95) 0%,
@@ -728,8 +728,8 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     transform: translate(-50%, -50%);
     border: 2px solid rgba(14, 165, 233, 0.3);
     border-radius: 50%;
@@ -748,15 +748,15 @@ body {
 }
 
 .energy-rings::before {
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     transform: translate(-50%, -50%);
     animation-delay: -1s;
 }
 
 .energy-rings::after {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     transform: translate(-50%, -50%);
     animation-delay: -2s;
     border-color: rgba(16, 185, 129, 0.4);
@@ -776,8 +776,8 @@ body {
 .icon-container {
     position: absolute;
     top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 30px;
     height: 30px;
     z-index: 10;
@@ -817,8 +817,8 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: all 0.6s ease;
@@ -895,23 +895,7 @@ body {
     50% { opacity: 0.3; }
 }
 
-/* Button Text */
-.button-text {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-.mode-text {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--text-primary);
-    text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
-    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+/* Button Text - Removed for circular design */
 
 /* Ripple Container */
 .ripple-container {
@@ -920,7 +904,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 25px;
+    border-radius: 50%;
     overflow: hidden;
     pointer-events: none;
 }
@@ -996,10 +980,7 @@ body {
     opacity: 1;
 }
 
-.insane-theme-button.light-mode .mode-text {
-    color: var(--text-primary);
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-}
+/* Mode text removed for circular design */
 
 @keyframes sunSpin {
     0% { transform: rotateY(0deg) scale(1) rotate(0deg); }
@@ -1014,16 +995,8 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .insane-theme-button {
-        width: 100px;
-        height: 45px;
-    }
-    
-    .button-text {
-        right: 10px;
-    }
-    
-    .mode-text {
-        font-size: 0.7rem;
+        width: 55px;
+        height: 55px;
     }
 }
 
